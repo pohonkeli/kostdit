@@ -65,6 +65,9 @@
                   <td>
                     Property Kosong
                   </td>
+                  <td class="text-center">
+                    Iklan
+                  </td>
                 </tr>
               </thead>
 
@@ -73,6 +76,12 @@
                   <tr>
                     <td><?php echo $item['nomor']; ?></td>
                     <td><?php echo $item['property_kosong']; ?></td>
+                    <td class="text-center">
+                      <a href="https://mamikos.com/" title="MamiKos" target="_blank">
+                        <img src="https://mamikos.com/assets/logo/svg/logo_mamikos_green_v2.svg" alt="MamiKos Logo"
+                          style="width: 100px; height: auto;">
+                      </a>
+                    </td>
                   </tr>
                 <?php endforeach; ?>
               </tbody>
