@@ -49,7 +49,7 @@
             <div class="col-xs-12">
                 <div class="box">
                     <div class="box-header">
-                        <h3 class="box-title">Customers List</h3>
+                        <h3 class="box-title">Daftar Penghuni</h3>
                         <div class="box-tools">
                             <form action="<?php echo base_url() ?>customers/customerListing" method="POST"
                                 id="searchList">
@@ -71,6 +71,7 @@
                                 <th>Code</th>
                                 <th>Nama</th>
                                 <th>Telepon</th>
+                                <th>Status</th>
                             </tr>
                             <?php
                             if (!empty($customerRecords)) {
@@ -80,6 +81,15 @@
                                         <td><?php echo $record->customer_code ?></td>
                                         <td><?php echo $record->customer_name ?></td>
                                         <td><?php echo $record->customer_telp ?></td>
+                                        <td>
+                                            <?php
+                                            if ($record->is_used == 1) {
+                                                ?> <span class="label label-success">Aktif</span> <?php
+                                            } else {
+                                                ?> <span class="label label-warning">Tidak Aktif</span> <?php
+                                            }
+                                            ?>
+                                        </td>
                                     </tr>
                                     <?php
                                 }
