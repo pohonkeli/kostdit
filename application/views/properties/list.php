@@ -49,7 +49,8 @@
                 <div class="col-xs-12">
                     <div class="box">
                         <div class="box-header with-border">
-                            <h3 class="box-title"><?php echo $category['CategoryCode'] . ' - ' . $category['Keterangan']; ?>
+                            <h3 class="box-title">
+                                <b><?php echo $category['CategoryCode'] . ' - ' . $category['Keterangan']; ?></b>
                             </h3>
                             <div class="box-tools pull-right">
                                 <button type="button" class="btn btn-box-tool" data-widget="collapse"><i
@@ -64,15 +65,15 @@
                                     <th>Nama</th>
                                     <th>Type</th>
                                     <th>Keterangan</th>
-                                    <th>Status</th>
+                                    <th>Harga Dasar</th>
                                 </tr>
                                 <?php foreach ($category['Properties'] as $property) { ?>
-                                    <tr <?php echo ($property['StatusName'] == 'KOSONG') ? 'class="success"' : (($property['StatusName'] == 'PENUH') ? 'class="danger"' : ''); ?>>
+                                    <tr>
                                         <td><?php echo $property['PropertyCode']; ?></td> <!-- Kode Property -->
                                         <td><?php echo $property['PropertyName']; ?></td> <!-- Nama Property -->
                                         <td><?php echo $property['TypeName']; ?></td> <!-- Type Property -->
                                         <td><?php echo $property['Keterangan']; ?></td> <!-- Keterangan -->
-                                        <td><?php echo $property['StatusName']; ?></td> <!-- Status Property -->
+                                        <td><?php echo $property['HargaDasar']; ?></td> <!-- Status Property -->
                                     </tr>
                                 <?php } ?>
                             </table>

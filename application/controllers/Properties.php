@@ -51,8 +51,8 @@ class Properties extends BaseController
                                     m_property.property_code AS PropertyCode, 
                                     m_property.property_name AS PropertyName, 
                                     m_type.type_name AS TypeName, 
-                                    m_property.keterangan AS KeteranganProperti, 
-                                    m_status.status_name AS StatusName 
+                                    m_property.keterangan AS KeteranganProperti,
+                                    concat('Rp ',FORMAT(m_property.property_harga_dasar, 0)) as HargaDasar
                                   FROM 
                                     m_property 
                                   INNER JOIN 
@@ -72,7 +72,7 @@ class Properties extends BaseController
                     'PropertyName' => $row['PropertyName'],
                     'TypeName' => $row['TypeName'],
                     'Keterangan' => $row['KeteranganProperti'],
-                    'StatusName' => $row['StatusName']
+                    'HargaDasar' => $row['HargaDasar']
                 );
             }
 
