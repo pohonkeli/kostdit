@@ -7,14 +7,6 @@
     </section>
     <section class="content">
         <div class="row">
-            <div class="col-xs-12 text-right">
-                <div class="form-group">
-                    <a class="btn btn-primary" href="<?php echo base_url(); ?>roles/add"><i class="fa fa-plus"></i> Add
-                        New Role</a>
-                </div>
-            </div>
-        </div>
-        <div class="row">
             <div class="col-md-12">
                 <?php
                 $this->load->helper('form');

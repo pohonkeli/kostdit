@@ -6,7 +6,7 @@
         </h1>
 
         <!-- Form untuk memilih file -->
-        <form action="<?php echo base_url('AutoDeploy/PostUpload'); ?>" method="post" enctype="multipart/form-data"
+        <!-- <form action="<?php echo base_url('AutoDeploy/PostUpload'); ?>" method="post" enctype="multipart/form-data"
             onsubmit="return confirmUpload();">
             <div class="form-group">
                 <label for="fileToUpload">Pilih File:</label>
@@ -30,7 +30,33 @@
                     placeholder="/remote/path/">
             </div>
             <button type="submit" class="btn btn-primary">Upload File</button>
-        </form>
+        </form> -->
+
+
+
+
+
+    </section>
+
+    <section class="content">
+        <div class="row">
+            <div class="col-md-12">
+                <form action="<?php echo base_url('AutoDeploy/PostUpload'); ?>" method="post"
+                    enctype="multipart/form-data" onsubmit="return confirmUpload();">
+                    <button type="submit" class="btn btn-primary">Deploy All</button>
+                </form>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-md-12">
+                <form action="<?php echo base_url('AutoDeploy/PostUploadApplicationView'); ?>" method="post"
+                    enctype="multipart/form-data" onsubmit="return confirmUpload();">
+                    <button type="submit" class="btn btn-primary">Upload application\views</button>
+                </form>
+            </div>
+        </div>
     </section>
 </div>
 
