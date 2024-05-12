@@ -245,6 +245,10 @@ $last_login = date('Y-m-d H:i:s', strtotime($last_login . '+7 hours'));
               <ul class="treeview-menu">
                 <li><a href="<?php echo base_url(); ?>automations/autoCreateRental"><i class="fa fa-circle-o"></i> Auto
                     Create Rental</a></li>
+
+                <li><a href="<?php echo base_url(); ?>autoDeploy"><i class="fa fa-circle-o"></i>
+                    Auto Deploy</a>
+                </li>
               </ul>
             </li>
             <?php
