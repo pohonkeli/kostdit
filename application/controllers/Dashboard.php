@@ -51,7 +51,7 @@ class Dashboard extends BaseController
 
 
             $queryPropertyKosong = $this->db->query(
-                                        "
+                "
                                         SELECT 
                                             ROW_NUMBER() OVER () as nomor,
                                             concat('Bulan ini ','<b>',CONCAT(YEAR(NOW()), '-', MONTHNAME(NOW())),'</b>', ', ',c.keterangan,' ( ',d.type_name, ' ',a.property_name, ' )', ' Masih Kosong, ', 'Segera buat iklan dengan Harga Sewa ','<b>', concat('Rp ',  FORMAT(a.property_harga_dasar , 0)),'</b>') as property_kosong
@@ -71,16 +71,40 @@ class Dashboard extends BaseController
                                         order by
                                             a.property_code                                       
                                         ;"
-                                        );
+            );
+
+            $queryKeuanganBulanIni = $this->db->query(
+                "
+                                            select 
+                                                ROW_NUMBER() OVER () as nomor,
+                                                c.customer_name ,
+                                                concat(CONCAT(DAY(a.tanggal_transaksi)),' ',CONCAT(monthname(a.tanggal_transaksi)),' ',CONCAT(YEAR(a.tanggal_transaksi))) as tanggal_bayar,
+                                                a.jumlah_bayar 
+                                            from 
+                                                t_rental_payment a
+                                            join
+                                                t_rental b on b.rental_code = a.rental_code
+                                            join 
+                                                m_customer c on c.customer_code = b.customer_code 
+                                            where b.tanggal_awal_rental  
+                                            between 
+                                                cast(DATE_SUB(NOW(), INTERVAL DAYOFMONTH(NOW()) - 1 DAY) as date) and 
+                                                LAST_DAY(NOW())
+                                            order by
+                                                c.customer_code                                  
+                                            ;"
+            );
 
 
             // Proses hasil query menjadi array
             $daftar_peringatan = $query->result_array();
             $daftar_property_kosong = $queryPropertyKosong->result_array();
+            $daftar_keuangan_bulan_ini = $queryKeuanganBulanIni->result_array();
 
             // Mengirim data ke tampilan
             $data['daftar_peringatan'] = $daftar_peringatan;
             $data['daftar_property_kosong'] = $daftar_property_kosong;
+            $data['daftar_keuangan_bulan_ini'] = $daftar_keuangan_bulan_ini;
 
             // Mengirim data ke tampilan
             $this->loadViews("general/dashboard", $this->global, $data, NULL);

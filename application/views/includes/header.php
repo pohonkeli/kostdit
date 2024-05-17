@@ -215,7 +215,7 @@ $last_login = date('Y-m-d H:i:s', strtotime($last_login . '+7 hours'));
               </a>
               <ul class="treeview-menu">
                 <li>
-                  <a href="<?php echo base_url(); ?>customers/customerListing">
+                  <a href="<?php echo base_url(); ?>LaporanKeuangan">
                     <i class="fa fa-users"></i>
                     <span>Laporan Keuangan</span>
                   </a>
