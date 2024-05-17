@@ -99,8 +99,8 @@ class Dashboard extends BaseController
             $queryKeuanganPerPeriode = $this->db->query(
             "
             select 
-                year(a.tanggal_transaksi) as tahun,
-                monthname(a.tanggal_transaksi) as bulan,
+                year(CONVERT_TZ(a.tanggal_transaksi, '+00:00', '+07:00')) as tahun,
+                monthname(CONVERT_TZ(a.tanggal_transaksi, '+00:00', '+07:00')) as bulan,
                 SUM(a.jumlah_bayar) as total_pemasukan
             from 
                 t_rental_payment a
@@ -108,8 +108,9 @@ class Dashboard extends BaseController
                 t_rental b on b.rental_code = a.rental_code
             join 
                 m_customer c on c.customer_code = b.customer_code
-            group by 1,2                              
-                ;"
+            group by 
+                1,2                     
+            ;"
             );
 
 
