@@ -74,7 +74,7 @@ class Dashboard extends BaseController
             );
 
             $queryKeuanganBulanIni = $this->db->query(
-                "
+                                            "
                                             select 
                                                 ROW_NUMBER() OVER () as nomor,
                                                 c.customer_name ,
@@ -96,15 +96,36 @@ class Dashboard extends BaseController
             );
 
 
+            $queryKeuanganPerPeriode = $this->db->query(
+            "
+            select 
+                year(a.tanggal_transaksi) as tahun,
+                monthname(a.tanggal_transaksi) as bulan,
+                SUM(a.jumlah_bayar) as total_pemasukan
+            from 
+                t_rental_payment a
+            join
+                t_rental b on b.rental_code = a.rental_code
+            join 
+                m_customer c on c.customer_code = b.customer_code
+            group by 1,2                              
+                ;"
+            );
+
+
             // Proses hasil query menjadi array
             $daftar_peringatan = $query->result_array();
             $daftar_property_kosong = $queryPropertyKosong->result_array();
             $daftar_keuangan_bulan_ini = $queryKeuanganBulanIni->result_array();
+            $daftar_keuangan_per_periode = $queryKeuanganPerPeriode->result_array();
+
 
             // Mengirim data ke tampilan
             $data['daftar_peringatan'] = $daftar_peringatan;
             $data['daftar_property_kosong'] = $daftar_property_kosong;
             $data['daftar_keuangan_bulan_ini'] = $daftar_keuangan_bulan_ini;
+            $data['daftar_keuangan_per_periode'] = $daftar_keuangan_per_periode;
+
 
             // Mengirim data ke tampilan
             $this->loadViews("general/dashboard", $this->global, $data, NULL);
